@@ -1,9 +1,10 @@
 import React from "react";
-import Table from "../component/table/table";
+// import Table from "../component/table/table";
 import HeadSubContent from "../template/head-sub-content";
 import Main from "../template/main";
 import AccessToken from "../utils/accessToken";
 import Api from "../data/api";
+import BasicTable from "../component/table/BasicTable";
 
 class User extends React.Component{
     constructor(props){
@@ -12,7 +13,6 @@ class User extends React.Component{
             dataTable:[],
             judul:[],
         };
-
     }
 
     async dataTable(){
@@ -26,16 +26,18 @@ class User extends React.Component{
         }
         
         this.setState({judul: judul});
-        this.setState({dataTable: Object.keys(dataTable)});
+        this.setState({dataTable: dataTable});
 
     }
 
     render(){
+        // {this.dataTable}
         this.dataTable();
+        // console.log(this.state.dataTable)
         return(
             <Main>
                 <HeadSubContent></HeadSubContent>
-                <Table judul={this.state.judul} data={this.state.dataTable}></Table>
+                                <BasicTable></BasicTable>
             </Main>
         );
     }
