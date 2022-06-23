@@ -15,29 +15,36 @@ class User extends React.Component{
         };
     }
 
-    async dataTable(){
+    async componentDidMount(){
+        // console.log('runnning');
         const accessToken = await AccessToken.getToken();
         const getAllData = await Api.All(accessToken,"users");
         const dataTable = getAllData.data["users"];
         
         const judul = [];
         for(let key in dataTable[0]){
-            judul.push(key.replace('_',' '));
-        }
+            judul.push(
+                {
+                    Header: key.replace('_',' '),
+                    Footer: key.replace('_',' '),
+                    accessor: key.replace('_',' ')
+                });
+        }   
         
+        // console.log(dataTable);
         this.setState({judul: judul});
         this.setState({dataTable: dataTable});
 
     }
 
+
     render(){
-        // {this.dataTable}
-        this.dataTable();
+        // console.log(this.state.dataTable);
         // console.log(this.state.dataTable)
         return(
             <Main>
                 <HeadSubContent></HeadSubContent>
-                                <BasicTable></BasicTable>
+                    <BasicTable allData = {this.state.dataTable} judul = {this.state.judul}></BasicTable>
             </Main>
         );
     }

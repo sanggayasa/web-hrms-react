@@ -1,13 +1,10 @@
 import React, {useMemo} from "react";
 import { useTable } from "react-table";
-import { COLUMNS } from "./colomns";
-import MOCK_DATA from "./MOCK_DATA.json";
 
-function BasicTable (){
-    // console.log(judul);
-    // console.log(MOCK_DATA);
-    const columns = useMemo(()=> COLUMNS, [])
-    const data = useMemo(()=>MOCK_DATA, [])
+function BasicTable ({allData, judul}){
+
+    const columns = useMemo(()=> judul, [judul])
+    const data = useMemo(()=>allData, [allData])
 
     const tableInstance = useTable({
         columns,
@@ -18,44 +15,62 @@ function BasicTable (){
         getTableProps,
         getTableBodyProps,
         headerGroups,
+        footerGroups,
         rows,
         prepareRow,
     } = tableInstance;
 
     return(
-        <div className="table-responsive">
-            <h1>hallo</h1>
-        <table className="table table-striped table-hover" {...getTableProps()}>
-            <thead>
-                {
-                    headerGroups.map(headerGroup=>(
-                        <tr {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map((column)=>(
-                                <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-                            ))}
-                            <th></th>
-                        </tr>
-                    ))
-                }
-            </thead>
-            <tbody {...getTableBodyProps()}>
-                {
-                    rows.map((row) => {
-                        prepareRow(row)
-                        return (
-                            <tr  {...row.getRowProps()}>
-                                {
-                                    row.cells.map( cell =>{
-                                        return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>   
-                                    })
-                                }
+        <div className="row container-search shadow p-3 m-1 bg-body rounded">
+            <div className="table-responsive">
+            <table className="table table-striped table-hover" {...getTableProps()}>
+                <thead>
+                    {
+                        headerGroups.map(headerGroup=>(
+                            <tr {...headerGroup.getHeaderGroupProps()}>
+                                {headerGroup.headers.map((column)=>(
+                                    <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+                                ))}
                             </tr>
-                        )
-                    })
-                }
-                
-            </tbody>
-        </table>
+                        ))
+                    }
+                </thead>
+                <tbody {...getTableBodyProps()}>
+                    {
+                        rows.map((row) => {
+                            prepareRow(row)
+                            return (
+                                <tr  {...row.getRowProps()}>
+                                    {
+                                        row.cells.map( cell =>{
+                                            return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>   
+                                        })
+                                    }
+                                </tr>
+                            )
+                        })
+                    }
+                    
+                </tbody>
+                <tfoot>
+                    {
+                        footerGroups.map(footerGroup=>(
+                        <tr {...footerGroup.getFooterGroupProps()}>
+                            {
+                                footerGroup.headers.map(column => (
+                                    <td {...column.getFooterProps}>
+                                        <b>{
+                                            column.render('Footer')
+                                        }</b>
+                                    </td>
+                                ))
+                            }
+                        </tr>   
+                        ))
+                    }
+                </tfoot>
+            </table>
+            </div>
         </div>
     )
 }
