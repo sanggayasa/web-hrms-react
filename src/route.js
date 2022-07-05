@@ -8,7 +8,7 @@ import Client from "./pages/client";
 import Organization from "./pages/organization";
 import Departemen from "./pages/departemen";
 import NotFound from "./notfound";
-import Profil from "./profil";
+import Profile from "./pages/profil";
 
 class Content extends React.Component{
 
@@ -18,10 +18,11 @@ class Content extends React.Component{
                 <Routes>
                     <Route path="/" element={<Login></Login>} />
                     <Route path="/dashboard" element={<Dashboard></Dashboard>} >
-                        <Route path=":username" element={<Profil></Profil>} /> 
+                        
                     </Route>
-                    <Route path="/user" element={<User></User>} >
+                    <Route path="user/" element={<User></User>} >
                     </Route>
+                    <Route path="user/:id" element={<Profile></Profile>} /> 
                     <Route path="/role" element={<Role></Role>} >
                     </Route>
                     <Route path="/client" element={<Client></Client>} >

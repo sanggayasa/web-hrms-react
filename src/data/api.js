@@ -1,4 +1,5 @@
 import CONFIG from '../globals/config'; 
+import AccessToken from "../utils/accessToken";
 
 class Api {
   static async All(token,route, query='') {
@@ -14,14 +15,29 @@ class Api {
     
   }
 
-  static async Add(token, menu, data) {
-    console.log(data);
+  static async Detail(route, query='') {
+    const accessToken = await AccessToken.getToken();
+    const response = await fetch(CONFIG.BASE_URL_API+route+query,{
+      method: "GET",
+      headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${accessToken}`,
+      },
+    });
+    const responseJson = await response.json();
+    return responseJson;
+    
+  }
+
+  static async Add(menu, data) {
+    // console.log(data);
+    const accessToken = await AccessToken.getToken();
     try{
       const response = await fetch(CONFIG.BASE_URL_API+menu,{
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`,
+            "Authorization": `Bearer ${accessToken}`,
         },
         body: data,
       });
@@ -72,48 +88,52 @@ class Api {
     }
   }
 
-  static async Clients(token) {
+  static async Clients() {
+    const accessToken = await AccessToken.getToken();
     const response = await fetch(CONFIG.BASE_URL_API+'clients',{
       method: "GET",
       headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
+          "Authorization": `Bearer ${accessToken}`,
       },
     });
     const responseJson = await response.json();
     return responseJson;
   }
 
-  static async Organizations(token) {
+  static async Organizations() {
+    const accessToken = await AccessToken.getToken();
     const response = await fetch(CONFIG.BASE_URL_API+'organizations',{
       method: "GET",
       headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
+          "Authorization": `Bearer ${accessToken}`,
       },
     });
     const responseJson = await response.json();
     return responseJson;
   }
 
-  static async Departemen(token) {
+  static async Departemen() {
+    const accessToken = await AccessToken.getToken();
     const response = await fetch(CONFIG.BASE_URL_API+'departemens',{
       method: "GET",
       headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
+          "Authorization": `Bearer ${accessToken}`,
       },
     });
     const responseJson = await response.json();
     return responseJson;
   }
 
-  static async Roles(token) {
+  static async Roles() {
+    const accessToken = await AccessToken.getToken();
     const response = await fetch(CONFIG.BASE_URL_API+'roles',{
       method: "GET",
       headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
+          "Authorization": `Bearer ${accessToken}`,
       },
     });
     const responseJson = await response.json();

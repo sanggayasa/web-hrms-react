@@ -1,8 +1,8 @@
 /* eslint-disable react/style-prop-object */
 import React from "react";
-import Logo from "../images/logo.png";
-import UserInfo from "../data/userinfo-idb";
-import ListDropdown from "../component/list-dropdown";
+import Logo from "../../images/logo.png";
+import UserInfo from "../../data/userinfo-idb";
+import ListDropdown from "../list-dropdown";
 
 class Sidenav extends React.Component{
 

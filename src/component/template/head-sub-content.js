@@ -1,7 +1,8 @@
-import Btn from "../component/form/btn";
-import Modal from "../component/modal";
+import Btn from "../form/btn";
+import Modal from "../modal";
 
-function HeadSubContent (){
+function HeadSubContent ({value, onChangeSearch, contentCreate, contentFilter}){
+
 
     return (
         <div>
@@ -11,7 +12,7 @@ function HeadSubContent (){
                         <Btn type="button" className="btn btn-outline-primary btn-add"  label="+ Create users" modal="#search"></Btn>
                     </div>
                     <div className="col-4 text-center">
-                        <input type="text" placeholder="Search ....." className="input-search form-control"/>
+                        <input type="text" placeholder="Search ....." value={value} onChange={onChangeSearch} className="input-search form-control"/>
                     </div>
                     <div className="col-4 text-end">
                         <Btn type="button" className="btn btn-outline-primary btn-add"  label="Filter" modal="#filter"></Btn>
@@ -19,8 +20,8 @@ function HeadSubContent (){
                 </div>
                 <div className="row content-menu">
                 </div>
-                <Modal id="search" judul="Create User" content={<h1>create</h1>}/>
-                <Modal id="filter" judul="Filter" content={<h1>filter</h1>} />
+                <Modal id="search" judul="Create User" content={contentCreate}/>
+                <Modal id="filter" judul="Filter" content={contentFilter} />
             </div>
         </div>
         

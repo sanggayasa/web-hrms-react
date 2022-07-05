@@ -1,5 +1,5 @@
 import React from "react";
-import Main from "../template/main";
+import Main from "../component/template/main";
 
 class Dashboard extends React.Component{
 

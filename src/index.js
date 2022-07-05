@@ -11,6 +11,13 @@ class App extends React.Component {
             </div>
         )
     }
+
+    afterRender(){
+        const select = new Selection();
+        select.selectionClient();
+
+    }
+
 }
 
 const root = createRoot(document.getElementById('root'));

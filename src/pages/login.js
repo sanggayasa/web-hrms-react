@@ -97,7 +97,8 @@ class Login extends React.Component{
 
           await UserInfo.putUserInfo(userInfo);
           await authsession.setCookies(accessToken,refreshToken);
-          window.location.replace("http://localhost:8081/#/dashboard");
+          //console.log(accessToken);
+          window.location.replace("http://localhost:3000/user");
         }
       console.log(filterData);
     }
