@@ -1,3 +1,4 @@
+import CONFIG from "../globals/config";
 /* eslint-disable no-useless-concat */
 class AuthSession {
     // CHECK SESSION AND COOKIES
@@ -7,14 +8,14 @@ class AuthSession {
         const refreshTokenCookies = await this.getCookies();
         
         if(refreshToken.refreshToken === null && refreshTokenCookies.refreshToken === null){
-            window.location.replace("http://localhost:8081/"); 
+            window.location.replace(CONFIG.BASE_URL); 
         }
     }
     // SESSION
     async setSession(accessToken, refreshToken){
         sessionStorage.setItem("accessToken", accessToken);
         sessionStorage.setItem("refreshToken", refreshToken);
-        window.location.replace("http://localhost:8081/#/dashboard"); 
+        window.location.replace(CONFIG.BASE_URL+"dashboard"); 
     }
 
     async getSession(){

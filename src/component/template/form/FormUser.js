@@ -18,6 +18,7 @@ function FormUser(props){
     const [alert, setAlert] = useState();
 
     const [client, setClient ] = useState('');
+    const [optionClient, setOptionClient ] = useState([]);
     const [optionOrganization, setOptionOrganization ] = useState([]);
     const [optionDepartemen, setOptionDepartemen ] = useState([]);
     const [optionRole, setOptionRole ] = useState([]);
@@ -26,8 +27,19 @@ function FormUser(props){
     const handleOrg = (newValue)=>{setOrg(newValue)};
     const handleDepartemen = (newValue)=>{setDepartemen(newValue)};
     const handleRole = (newValue)=>{setRole(newValue)};
-
+    // console.log(client);
     //get List Organization base from client
+
+      useEffect(() => {
+        async function listClient(){ 
+            const dataClient= ((await Data.Clients()).data).clients;
+            setOptionClient(dataClient);
+            setClient(dataClient[0]['client ID']);
+        }
+        listClient();
+
+    }, []);
+
     useEffect(() => {
         async function listClient(){ 
             const dataOrganization= ((await Data.Organizations()).data).organizations;
@@ -112,7 +124,7 @@ function FormUser(props){
         }
 
         const respon = await Data.Add('users',JSON.stringify(body));
-        console.log(respon);
+        // console.log(respon);
         if(respon.status === 'fail'){
             setAlert(<div className="alert alert-warning" role="alert">
                 {respon.message}
@@ -154,7 +166,7 @@ function FormUser(props){
                             <Input label="password" type="password" value={verifyPassword} onChange = {e => setVerifyPassword(e.target.value)} disabled={props.disabled}></Input>  
                         </div>
                         <div className="col">
-                            <SelectClient value={client} onChange={handleClient} disabled={props.disabled}></SelectClient>
+                            <SelectClient value={client} onChange={handleClient} optionClient={optionClient} disabled={props.disabled}></SelectClient>
                         </div>
                     </div>
                 </div> 

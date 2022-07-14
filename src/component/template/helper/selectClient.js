@@ -1,22 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React,{useState, useEffect}  from "react";
-import DataClient from "../../../data/api";
+import React from "react";
 
 function SelectClient(props){
-    const [optionClient, setOptionClient ] = useState([]);
+    // const [optionClient, setOptionClient ] = useState([]);
     function handleChange(event) {
         props.onChange(event.target.value);
     }
-
-    useEffect(() => {
-        async function listClient(){ 
-            const dataClient= ((await DataClient.Clients()).data).clients;
-            setOptionClient(dataClient);
-            props.onChange(dataClient[0]['client ID']);
-        }
-        listClient();
-
-    }, []);
     
     return (
         <div className="mb-3">
@@ -28,13 +17,11 @@ function SelectClient(props){
             onChange={handleChange}
             aria-describedby="emailHelp" 
             disabled={props.disabled? true:false}>
-                {
-                    
-                    optionClient.map((a)=>{
+                {    
+                    props.optionClient.map((a)=>{
                             return (
                                 <option key={a['client ID']} value={a['client ID']}>{a.name}</option>
                             )
-                        
                     })
                 }
             </select>

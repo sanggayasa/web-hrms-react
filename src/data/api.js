@@ -17,6 +17,7 @@ class Api {
 
   static async Detail(route, query='') {
     const accessToken = await AccessToken.getToken();
+    // console.log(route+query);
     const response = await fetch(CONFIG.BASE_URL_API+route+query,{
       method: "GET",
       headers: {
@@ -42,35 +43,34 @@ class Api {
         body: data,
       });
       const responseJson = await response.json();
-      console.log(responseJson);
+      // console.log(responseJson);
       return responseJson;
     } catch (e){
-      console.log(e);
+      // console.log(e);
     }
   }
 
-  static async Update(token, menu, data,id) {
-    console.log(CONFIG.BASE_URL_API+menu+'/'+id);
-    
+  static async Update(menu, data,id) {
+    const accessToken = await AccessToken.getToken();
     try{
       const response = await fetch(CONFIG.BASE_URL_API+menu+'/'+id,{
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`,
+            "Authorization": `Bearer ${accessToken}`,
         },
         body: data,
       });
       const responseJson = await response.json();
-      console.log(responseJson);
+      // console.log(responseJson);
       return responseJson;
     } catch (e){
-      console.log(e);
+      // console.log(e);
     }
   }
 
   static async Delete(token, menu,id) {
-    console.log(CONFIG.BASE_URL_API+menu+'/'+id);
+    // console.log(CONFIG.BASE_URL_API+menu+'/'+id);
 
     try{
       const response = await fetch(CONFIG.BASE_URL_API+menu+'/'+id,{
@@ -81,10 +81,10 @@ class Api {
         },
       });
       const responseJson = await response.json();
-      console.log(responseJson);
+      // console.log(responseJson);
       return responseJson;
     } catch (e){
-      console.log(e);
+      // console.log(e);
     }
   }
 

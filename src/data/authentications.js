@@ -15,6 +15,7 @@ class AuthenticationsSource {
         client_id:client
       })
     });
+    
     const responseJson = await response.json();
     return responseJson;
   }

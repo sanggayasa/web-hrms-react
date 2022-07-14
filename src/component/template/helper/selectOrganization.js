@@ -8,7 +8,7 @@ function SelectOrganization(props){
 
     return (
         <div className="mb-3">
-            <label htmlFor="organization" className="form-label">Organizations</label> 
+            <label htmlFor="organization" className="form-label">Organization</label> 
             <select  
             id="organization"
             className="form-control" 
@@ -23,8 +23,6 @@ function SelectOrganization(props){
                         )
                     }) 
                 }
-
-            
             </select>
         </div>
 

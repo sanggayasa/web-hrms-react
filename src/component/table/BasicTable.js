@@ -135,9 +135,6 @@ function BasicTable ({allData, judul}){
                 </div>
 
             </div>
-            {
-                // console.log(selectedFlatRows.map((row)=> row.original))
-            }
             </div>
         </div>
     )

@@ -6,10 +6,10 @@ function SelectDepartemen(props){
     function handleChange(event) {
         props.onChange(event.target.value);
     }
-
+    // console.log(props.value);
     return (
         <div className="mb-3">
-            <label htmlFor="Departemen" className="form-label">Departemens</label> 
+            <label htmlFor="Departemen" className="form-label">Departemen</label> 
             <select  
             id="Departemen"
             className="form-control" 
@@ -22,7 +22,6 @@ function SelectDepartemen(props){
                         return (
                             <option key={a['departemen ID']} value={a['departemen ID']}>{a.name}</option>
                         )
-                        
                     }) 
                 }
             </select>
