@@ -7,7 +7,10 @@ class accessToken{
         const checkToken = new UpdateRefreshToken;
         await checkToken.update();
         const authSession = new AuthSession;
-        const accessToken = (await authSession.getCookies()).accessToken;
+        const getCookies = await authSession.getCookies();
+        const getSession = await authSession.getSession();
+        const getNewToken = getCookies.accessToken ? getCookies : getSession ;
+        const accessToken = (getNewToken).accessToken;
         return accessToken;
     }
 } 

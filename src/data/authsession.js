@@ -15,7 +15,6 @@ class AuthSession {
     async setSession(accessToken, refreshToken){
         sessionStorage.setItem("accessToken", accessToken);
         sessionStorage.setItem("refreshToken", refreshToken);
-        window.location.replace(CONFIG.BASE_URL+"dashboard"); 
     }
 
     async getSession(){

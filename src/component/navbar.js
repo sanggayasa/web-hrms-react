@@ -15,7 +15,7 @@ function Navbar(){
         <nav className="navbar content-top bg-body shadow">
             <div className="col-12 text-end">
                 <img id="profil-icon" src={profilman} alt="" width="70px" height="70px" onClick={()=>dropdown===-300?setDropdown(90):setDropdown(-300)} />
-                <div className="dropdown bg-body shadow text-start" style={{top:dropdown}}>
+                <div className="dropdown bg-body shadow text-start" style={{top:dropdown, zIndex:'3'}}>
                     <div className="d-grid gap-2 p-1">
                         <button type="button" className="btn btn-light">Profile</button> 
                         <button type="button" className="btn btn-light" onClick={deleteCookies}>Logout</button> 

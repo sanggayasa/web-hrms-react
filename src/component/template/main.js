@@ -5,7 +5,8 @@ import SubContent from "./sub-content";
 function Main(props){
 
     const getCookie = document.cookie;
-    if(!getCookie){
+    const getSession = sessionStorage.getItem("accessToken");
+    if(!getCookie && !getSession ){
         window.location.replace("http://localhost:3000/");
     }
 

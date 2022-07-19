@@ -35,6 +35,7 @@ function Login(){
 
             await UserInfo.putUserInfo(userInfo);
             await authsession.setSession(accessToken,refreshToken);
+            window.location.replace("http://localhost:3000/user"); 
 
           }else if(authentications.status === 'success' && remember === true){
             const userInfo = {

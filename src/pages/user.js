@@ -16,16 +16,15 @@ class User extends React.Component{
             judul:[],
             search:'',
         };
-
-        
         this.onChangeSearch = this.onChangeSearch.bind(this);
     }
 
     
     async componentDidMount(){
-        
             const accessToken = await AccessToken.getToken();
             const getAllData = await Api.All(accessToken,"users");
+
+            
             // console.log(getAllData);
             const dataTable = getAllData.data["users"].map((e)=>{
                 const addAction = {
@@ -56,7 +55,6 @@ class User extends React.Component{
         this.setState((prevState) => {
             const dataFind = [];
             for(let i = 0; i < prevState.initTable.length ; i++){
-
                     const data = (Object.values(prevState.initTable[i]).toString()).match(event.target.value);
                     if(data != null){
                         dataFind.push(prevState.initTable[i]);
